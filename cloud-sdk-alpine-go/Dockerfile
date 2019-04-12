@@ -10,7 +10,9 @@ RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin
 
 RUN go version
 
+# Instaling appengine
 RUN go get google.golang.org/appengine
 RUN go install google.golang.org/appengine
 
+# Instaling npm/nodejs
 RUN apk add --update nodejs nodejs-npm
