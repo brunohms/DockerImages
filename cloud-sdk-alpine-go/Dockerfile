@@ -14,5 +14,7 @@ RUN go version
 RUN go get google.golang.org/appengine
 RUN go install google.golang.org/appengine
 
+RUN gcloud components install app-engine-go
+
 # Instaling npm/nodejs
 RUN apk add --update nodejs nodejs-npm
