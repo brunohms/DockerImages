@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:alpine
+FROM google/cloud-sdk:280.0.0-alpine
 RUN apk add --no-cache git make musl-dev go
 
 # Configure Go
