@@ -6,6 +6,9 @@ if [ "$INSTALL_GCLOUD" = "true" ]; then
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
     apt-get update
     apt-get install -y google-cloud-sdk
+    if [ "$INSTALL_GCLOUD_EMULATOR" = "true" ]; then
+        apt-get install -y google-cloud-sdk-firestore-emulator google-cloud-sdk-pubsub-emulator google-cloud-sdk-datastore-emulator
+    fi
 fi
 if [ "$INSTALL_DOCKER" = "true" ]; then
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
