@@ -10,6 +10,11 @@ maven:3.6.1-jdk-11-docker \
 maven:3.6.1-jdk-11-gcloud \
 maven:3.6.1-jdk-11-docker-gcloud \
 maven:3.6.1-jdk-11-docker-gcloud-emulator \
+maven:3.6.3-jdk-14 \
+maven:3.6.3-jdk-14-docker \
+maven:3.6.3-jdk-14-gcloud \
+maven:3.6.3-jdk-14-docker-gcloud \
+maven:3.6.3-jdk-14-docker-gcloud-emulator \
 ; do
     MAVEN_IMAGE=$(echo $IMAGE | sed -e 's#-docker##; s#-gcloud##; s#-emulator##;')
     BUILD_ARGS="-t $IMAGE -t stilingue220220/$IMAGE"
