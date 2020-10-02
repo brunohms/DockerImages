@@ -35,4 +35,8 @@ maven:3.6.3-jdk-14-docker-gcloud-emulator \
     printf "%s\n%s\n\n" "Building image $IMAGE with command:" "$CMD"
     $CMD
     docker push "stilingue220220/$IMAGE"
+
+    CMD="docker image rm $IMAGE stilingue220220/$IMAGE"
+    printf "%s\n%s\n\n" "Removing local image $IMAGE after build with command:" "$CMD"
+    $CMD
 done
