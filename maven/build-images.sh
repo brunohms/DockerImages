@@ -3,16 +3,19 @@ for IMAGE in \
 maven:3.5.3-jdk-8 \
 maven:3.5.3-jdk-8-docker \
 maven:3.5.3-jdk-8-gcloud \
+maven:3.5.3-jdk-8-gcloud-emulator \
 maven:3.5.3-jdk-8-docker-gcloud \
 maven:3.5.3-jdk-8-docker-gcloud-emulator \
 maven:3.6.1-jdk-11 \
 maven:3.6.1-jdk-11-docker \
 maven:3.6.1-jdk-11-gcloud \
+maven:3.6.1-jdk-11-gcloud-emulator \
 maven:3.6.1-jdk-11-docker-gcloud \
 maven:3.6.1-jdk-11-docker-gcloud-emulator \
 maven:3.6.3-jdk-14 \
 maven:3.6.3-jdk-14-docker \
 maven:3.6.3-jdk-14-gcloud \
+maven:3.6.3-jdk-14-gcloud-emulator \
 maven:3.6.3-jdk-14-docker-gcloud \
 maven:3.6.3-jdk-14-docker-gcloud-emulator \
 ; do
@@ -21,7 +24,7 @@ maven:3.6.3-jdk-14-docker-gcloud-emulator \
     BUILD_ARGS="$BUILD_ARGS --build-arg MAVEN_IMAGE=$MAVEN_IMAGE"
     if [[ $IMAGE == *"gcloud"* ]]; then
         BUILD_ARGS="$BUILD_ARGS --build-arg INSTALL_GCLOUD=true"
-        if [[ $IMAGE == *"emulator"* ]]; then
+        if [[ $IMAGE == *"gcloud-emulator"* ]]; then
             BUILD_ARGS="$BUILD_ARGS --build-arg INSTALL_GCLOUD_EMULATOR=true"
         fi
     fi
