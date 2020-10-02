@@ -22,9 +22,10 @@ if [ "$INSTALL_GCLOUD" = "true" ]; then
     curl -O "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz"
     tar -xzf "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" -C /opt/
     /opt/google-cloud-sdk/install.sh -q --path-update true --additional-components beta
-    . ~/.bashrc
-    gcloud config set project fake-project-id
+    # Gcloud emulators need project id to be set even if it doesn't exist or is unreachable
+    /opt/google-cloud-sdk/bin/gcloud config set project fake-project-id
     if [ "$INSTALL_GCLOUD_EMULATOR" = "true" ]; then
-        gcloud components install -q cloud-datastore-emulator cloud-firestore-emulator pubsub-emulator
+        /opt/google-cloud-sdk/bin/gcloud components install -q cloud-datastore-emulator cloud-firestore-emulator pubsub-emulator
     fi
+    ln -s /opt/google-cloud-sdk/bin/* /usr/local/bin/
 fi
