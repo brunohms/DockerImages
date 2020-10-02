@@ -9,4 +9,4 @@ ARG INSTALL_DOCKER=false
 
 COPY setup.sh /setup.sh
 
-RUN sh ./setup.sh
+RUN bash ./setup.sh
