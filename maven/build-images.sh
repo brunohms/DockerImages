@@ -12,14 +12,15 @@ maven:3.6.1-jdk-11-gcloud \
 maven:3.6.1-jdk-11-gcloud-emulator \
 maven:3.6.1-jdk-11-docker-gcloud \
 maven:3.6.1-jdk-11-docker-gcloud-emulator \
-maven:3.6.3-jdk-14 \
-maven:3.6.3-jdk-14-docker \
-maven:3.6.3-jdk-14-gcloud \
-maven:3.6.3-jdk-14-gcloud-emulator \
-maven:3.6.3-jdk-14-docker-gcloud \
-maven:3.6.3-jdk-14-docker-gcloud-emulator \
+maven:3.6.3-openjdk-14-slim \
+maven:3.6.3-openjdk-14-slim-docker \
+maven:3.6.3-openjdk-14-slim-gcloud \
+maven:3.6.3-openjdk-14-slim-gcloud-emulator \
+maven:3.6.3-openjdk-14-slim-docker-gcloud \
+maven:3.6.3-openjdk-14-slim-docker-gcloud-emulator \
 ; do
     MAVEN_IMAGE=$(echo $IMAGE | sed -e 's#-docker##; s#-gcloud##; s#-emulator##;')
+    IMAGE=$(echo $IMAGE | sed -e 's#open##; s#-slim##;')
     BUILD_ARGS="-t $IMAGE -t stilingue220220/$IMAGE"
     BUILD_ARGS="$BUILD_ARGS --build-arg MAVEN_IMAGE=$MAVEN_IMAGE"
     if [[ $IMAGE == *"gcloud"* ]]; then
