@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+cat /etc/os-release
+set -xe
 if [ -f /etc/debian_version ] ; then
     apt-get update
     apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
@@ -9,12 +11,18 @@ if [ -f /etc/debian_version ] ; then
         apt-get install -y docker-ce docker-ce-cli containerd.io
     fi
 elif [ -f /etc/redhat-release ] ; then
-    yum install -y curl yum-utils
+    #Expecting oraclelinux 8 on some maven images
+    microdnf install -y curl git
     if [ "$INSTALL_DOCKER" = "true" ]; then
-        yum install -y policycoreutils-python
-        yum install -y http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-2.107-3.el7.noarch.rpm
-        yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-        yum install -y docker-ce docker-ce-cli containerd.io
+        microdnf install -y dnf dnf-utils
+        dnf clean all
+        dnf repolist
+        dnf update -y --releasever=8
+        dnf install -y dnf-utils zip unzip
+        dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+        dnf install -y docker-ce --nobest
+        rm -r /var/cache/dnf
+        dnf clean all
     fi
 fi
 
