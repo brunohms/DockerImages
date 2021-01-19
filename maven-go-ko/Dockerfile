@@ -6,6 +6,7 @@ RUN rm -rf /var/lib/apt/lists/*
 ENV PATH=/usr/local/go/bin:$PATH
 ENV GOLANG_VERSION=1.15.6
 RUN curl -L "https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz" | tar xzf - -C /usr/local
+ENV GOROOT=/usr/local/go
 ENV GOPATH=/go
 ENV PATH=$GOPATH/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
